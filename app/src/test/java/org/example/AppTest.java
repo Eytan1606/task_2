@@ -31,3 +31,4 @@ public class AppTest {
         assertEquals("54321",App.reverse("12345"));
         assertEquals("%!@#",App.reverse("#@!%"));
 }
+}
