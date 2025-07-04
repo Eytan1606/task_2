@@ -11,4 +11,23 @@ public class AppTest {
         App classUnderTest = new App();
         assertNotNull(classUnderTest);
     }
+    public void testAdd(){
+        assertEquals(4,App.add(4,0));
+        assertEquals(-2,App.add(-5,3));
+        assertEquals(-7,App.add(-4,-3));
+        assertEquals(1,App.add(4,-3));
+        
+    }
+    public void testIsPrime(){
+        assertFalse(App.isPrime(0));
+        assertFalse(App.isPrime(1));
+        assertTrue(App.isPrime(7));
+        assertFalse(App.isPrime(4));
+
+    }
+    public void testReverse(){
+        assertEquals("olleh",App.reverse("hello"));
+        assertEquals("y2h",App.reverse("h2y"));
+        assertEquals("54321",App.reverse("12345"));
+        assertEquals("%!@#",App.reverse("#@!%"));
 }
