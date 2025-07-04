@@ -32,3 +32,184 @@ public class AppTest {
         assertEquals("%!@#",App.reverse("#@!%"));
 }
 }
+
+
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+import java.util.*;
+
+public class AppTest {
+
+    // בדיקות לפונקציה mostCommonWord
+    @Test
+    void testMostCommonWord() {
+        String text = "Hello world hello world hello test";
+        String result = App.mostCommonWord(text);
+        assertEquals("hello", result);
+    }
+
+    @Test
+    void testMostCommonWordWithSingleWord() {
+        String text = "Unique";
+        String result = App.mostCommonWord(text);
+        assertEquals("unique", result);
+    }
+
+    @Test
+    void testMostCommonWordWithEmptyString() {
+        String text = "";
+        String result = App.mostCommonWord(text);
+        assertEquals("", result); // צריך לוודא איך הפונקציה שלך מתנהגת כאן
+    }
+
+    // בדיקות לפונקציה filterEvens
+    @Test
+    void testFilterEvensWithMixedNumbers() {
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> result = App.filterEvens(list);
+        assertEquals(Arrays.asList(2, 4, 6), result);
+    }
+
+    @Test
+    void testFilterEvensWithNoEvens() {
+        List<Integer> list = Arrays.asList(1, 3, 5);
+        List<Integer> result = App.filterEvens(list);
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void testFilterEvensWithEmptyList() {
+        List<Integer> result = App.filterEvens(Collections.emptyList());
+        assertTrue(result.isEmpty());
+    }
+
+    // בדיקות לפונקציה average
+    @Test
+    void testAverageWithPositiveNumbers() {
+        int[] arr = {2, 4, 6};
+        assertEquals(4.0, App.average(arr));
+    }
+
+    @Test
+    void testAverageWithNegativeNumbers() {
+        int[] arr = {-5, -10, -15};
+        assertEquals(-10.0, App.average(arr));
+    }
+
+    @Test
+    void testAverageWithMixedNumbers() {
+        int[] arr = {-2, 0, 2};
+        assertEquals(0.0, App.average(arr));
+    }
+
+    @Test
+    void testAverageWithEmptyArray() {
+        int[] arr = {};
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            App.average(arr);
+        });
+        assertEquals("Empty array", exception.getMessage());
+    }
+}
+
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.*;
+
+public class AppTest {
+// tests for factorial func
+    @Test
+    public void testFactorialZero() {
+        assertEquals(1, MathUtils.factorial(0));
+    }
+
+    @Test
+    public void testFactorialOne() {
+        assertEquals(1, MathUtils.factorial(1));
+    }
+
+    @Test
+    public void testFactorialPositiveNumber() {
+        assertEquals(120, MathUtils.factorial(5));
+        assertEquals(3628800, MathUtils.factorial(10));
+    }
+
+    @Test
+    public void testFactorialLargeNumber() {
+        assertEquals(2432902008176640000L, MathUtils.factorial(20));
+    }
+
+    @Test
+    public void testFactorialNegativeNumberThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> MathUtils.factorial(-1));
+    }
+
+    // tests for isPalindrome func
+
+    @Test
+    public void testPalindromeSimple() {
+        assertTrue(StringUtils.isPalindrome("madam"));
+        assertTrue(StringUtils.isPalindrome("racecar"));
+    }
+
+    @Test
+    public void testPalindromeWithSpacesAndCases() {
+        assertTrue(StringUtils.isPalindrome("A man a plan a canal Panama"));
+        assertTrue(StringUtils.isPalindrome("Was it a car or a cat I saw"));
+    }
+
+    @Test
+    public void testNotPalindrome() {
+        assertFalse(StringUtils.isPalindrome("hello"));
+        assertFalse(StringUtils.isPalindrome("openai"));
+    }
+
+    @Test
+    public void testPalindromeWithPunctuation() {
+        assertTrue(StringUtils.isPalindrome("No 'x' in Nixon"));
+        assertTrue(StringUtils.isPalindrome("Able was I, ere I saw Elba."));
+    }
+
+    @Test
+    public void testEmptyAndNullStrings() {
+        assertTrue(StringUtils.isPalindrome("")); // empty string is considered palindrome
+        assertFalse(StringUtils.isPalindrome(null)); // null is not
+    }
+
+    // tests for fibonacciUpTo func
+
+    @Test
+    public void testFibonacciUpToZero() {
+        List<Integer> expected = List.of(0);
+        assertEquals(expected, MathUtils.generateFibonacciUpTo(0));
+    }
+
+    @Test
+    public void testFibonacciUpToOne() {
+        List<Integer> expected = List.of(0, 1, 1);
+        assertEquals(expected, MathUtils.generateFibonacciUpTo(1));
+    }
+
+    @Test
+    public void testFibonacciUpToTen() {
+        List<Integer> expected = List.of(0, 1, 1, 2, 3, 5, 8);
+        assertEquals(expected, MathUtils.generateFibonacciUpTo(10));
+    }
+
+    @Test
+    public void testFibonacciUpToNegative() {
+        List<Integer> expected = List.of();
+        assertEquals(expected, MathUtils.generateFibonacciUpTo(-5));
+    }
+
+    @Test
+    public void testFibonacciUpToLargeLimit() {
+        List<Integer> result = MathUtils.generateFibonacciUpTo(1000);
+        assertTrue(result.get(result.size() - 1) <= 1000);
+        assertTrue(result.get(result.size() - 2) <= 1000);
+    }
+
+
+}
